@@ -1,0 +1,9 @@
+.article-logo{
+    width: 170px;    
+    border-radius: 3px;
+    float: left;
+    padding: 0 20px 20px 0;
+}
+.row{
+    margin: 10px;
+ }

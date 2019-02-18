@@ -1,0 +1,30 @@
+<div id="search-component">
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-12">
+        <h4>{{searchModel.source ? searchModel.source : "Select source"}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-3">
+        <select class="form-control" (ngModelChange)="filterBySource($event)" [(ngModel)]="searchModel.source" [disabled]="check1.checked">
+          <option value="">Select source</option>
+          <option value="BBC">BBC</option>
+          <option value="test">Test</option>
+          <option value="onliner">Onliner</option>
+        </select>
+      </div>
+      <div class="col col-lg-3">
+        <input class="form-control" #searchBox id="search-box" (ngModelChange)="filterByText($event)" [(ngModel)]="searchModel.text" placeholder="Type your text" />
+      </div>
+
+      <div class="col col-lg-3">
+        <label class="form-check-label">
+          <input class="form-check-input" #check1 type="checkbox" (ngModelChange)="filterByAuthor($event)" [(ngModel)]="searchModel.createdByMe"/>Only created by me</label>
+      </div>
+      <div class="col col-lg-3">
+        <button class="btn btn-primary" routerLink="/detail">Add Article</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div>
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-16">
+        <h2 *ngIf="article.id; else articleDetailsNew">Edit: {{article.heading | uppercase}}</h2>
+        <ng-template #articleDetailsNew>
+          <h2>Create</h2>
+        </ng-template>
+        <div *ngIf="article.id"><span>id: </span>{{article.id}}</div>
+      </div>
+    </div>
+    <div class="row" *ngIf="error">
+      <div class="col col-lg-12">
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <label>Heading:</label>
+      </div>
+      <div class="col col-lg-10">
+        <input class="form-control" [(ngModel)]="article.heading" placeholder="Heading" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>Short Description:</label>
+      </div>
+      <div class="col col-lg-10">
+        <input class="form-control" [(ngModel)]="article.shortDescription" placeholder="Short Description" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>Content:</label>
+      </div>
+      <div class="col col-lg-10">
+        <textarea class="form-control" rows="6" [(ngModel)]="article.content" placeholder="Content"></textarea>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col">
+        <label>Image Url:</label>
+      </div>
+      <div class="col col-lg-10">
+        <input class="form-control" [(ngModel)]="article.imageUrl" placeholder="Image Url" />
+      </div>
+    </div>
+    <div class="row" *ngIf="article.id">
+      <div class="col">
+        <label>Date:</label>
+      </div>
+      <div class="col col-lg-10">
+        {{article.addDate | date:'short'}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>Author:</label>
+      </div>
+      <div class="col col-lg-10">
+        {{article.author}}
+      </div>
+    </div>
+    <div class="row" *ngIf="article.id">
+      <div class="col">
+        <label>Source Url:</label>
+      </div>
+      <div class="col col-lg-10">
+          {{article.sourceUrl}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col col-lg-10">
+        <button (click)="save()" class="btn btn-primary">Save</button>&nbsp;
+        <button (click)="goBack()" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

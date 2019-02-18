@@ -1,0 +1,13 @@
+<div class="container">
+    <div *ngFor="let article of articles" class="row">
+        <div class="col">
+            <img src="{{article.imageUrl}}" class="article-logo">
+            <h4>{{article.heading}}</h4>
+            <p>{{article.shortDescription}}</p>
+        </div>
+        <div class="col col-lg-2">
+            <button class="btn btn-primary" routerLink="/detail/{{article.id}}" [hidden]="!isEditable(article)">Edit</button>&nbsp;
+            <button class="delete" title="delete article" (click)="delete(article)" class="btn btn-secondary" [hidden]="!isEditable(article)">Delete</button>
+        </div>
+    </div>
+</div>
