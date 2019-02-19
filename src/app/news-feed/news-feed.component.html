@@ -10,4 +10,7 @@
             <button class="delete" title="delete article" (click)="delete(article)" class="btn btn-secondary" [hidden]="!isEditable(article)">Delete</button>
         </div>
     </div>
+    <button class="btn" (click)="getData()" [disabled]="showMoreDisabled">
+            Show more
+    </button>
 </div>

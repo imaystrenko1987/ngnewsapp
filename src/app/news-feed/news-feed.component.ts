@@ -12,16 +12,39 @@ import { NewsComponent } from '../news/news.component';
 })
 export class NewsFeedComponent implements OnInit {
   articles: Article[];
-  constructor(private newsService: NewsService) { }
+  counter: number = 0;
+  increment: number = 3;
+  showMoreDisabled: boolean;
+  searchModel: Search = new Search();
 
-  ngOnInit() {
-    this.getArticles(new Search());
+  constructor(private newsService: NewsService) { 
   }
 
-  getArticles(searchModel: Search): void {
-    searchModel.author = searchModel.createdByMe ? NewsComponent.currentAuthor : "";
-    this.newsService.searchArticles(searchModel)
-    .subscribe(articles => this.articles = articles);
+  ngOnInit() {
+    this.getArticles();
+  }
+
+  getData(){
+    this.getArticles();
+  }
+
+  getArticles(searchModel: Search = null): void {
+    if(searchModel){
+      this.searchModel = searchModel;
+      this.counter = this.increment;
+    }
+    else{
+      this.counter += this.increment;
+    }
+    this.searchModel = searchModel ? searchModel : this.searchModel;
+    this.searchModel.author = this.searchModel.createdByMe ? NewsComponent.currentAuthor : "";
+    this.newsService.searchArticles(this.searchModel)
+    .subscribe(articles => {
+      this.showMoreDisabled = this.counter >= articles.length
+      articles = articles.slice(0, this.counter)
+      
+      this.articles = articles;
+    });
   }
 
   add(article: Article): void {
