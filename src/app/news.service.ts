@@ -14,7 +14,7 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class NewsService {
 
-  private newsUrl = 'api/articles';  // URL to web api
+  private newsUrl = 'http://localhost:3336/news';  // URL to web api
 
   constructor(
     private http: HttpClient) { }
@@ -32,7 +32,7 @@ export class NewsService {
       );
   }
 
-  getArticle(id: number): Observable<Article> {
+  getArticle(id: string): Observable<Article> {
     const url = `${this.newsUrl}/${id}`;
     return this.http.get<Article>(url).pipe(
       tap(_ => this.log(`fetched article id=${id}`)),
@@ -63,13 +63,13 @@ export class NewsService {
 
   addArticle (article: Article): Observable<Article> {
     return this.http.post<Article>(this.newsUrl, article, httpOptions).pipe(
-      tap((newArticle: Article) => this.log(`added article w/ id=${newArticle.id}`)),
+      tap((newArticle: Article) => this.log(`added article w/ id=${newArticle._id}`)),
       catchError(this.handleError<Article>('addArticle'))
     );
   }
 
   deleteArticle (article: Article | number): Observable<Article> {
-    const id = typeof article === 'number' ? article : article.id;
+    const id = typeof article === 'number' ? article : article._id;
     const url = `${this.newsUrl}/${id}`;
 
     return this.http.delete<Article>(url, httpOptions).pipe(
@@ -79,8 +79,10 @@ export class NewsService {
   }
 
   updateArticle (article: Article): Observable<any> {
-    return this.http.put(this.newsUrl, article, httpOptions).pipe(
-      tap(_ => this.log(`updated article id=${article.id}`)),
+    const id = article._id;
+    const url = `${this.newsUrl}/${id}`;
+    return this.http.put<Article>(url, article, httpOptions).pipe(
+      tap(_ => this.log(`updated article id=${article._id}`)),
       catchError(this.handleError<any>('updateArticle'))
     );
   }

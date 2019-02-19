@@ -5,7 +5,7 @@ export class Article {
     this.author = NewsComponent.currentAuthor;
   }
 
-  id: number;
+  _id: string;
   heading: string;
   shortDescription: string;
   content: string;

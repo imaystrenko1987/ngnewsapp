@@ -27,7 +27,7 @@ export class ArticleComponent implements OnInit {
   }
 
   getArticle(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     const sourceUrl = this.route.snapshot.paramMap.get('sourceUrl');
     if(sourceUrl){
       var search = new Search();
@@ -58,7 +58,7 @@ export class ArticleComponent implements OnInit {
     }
     this.article.addDate = new Date();
     this.article.sourceUrl = this.article.heading.replace(/ /g, "-").toLowerCase();
-    if(!this.article.id){
+    if(!this.article._id){
       this.article.author = NewsComponent.currentAuthor;
       this.newsService.addArticle(this.article)
       .subscribe(() => this.goBack());
