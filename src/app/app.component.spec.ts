@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ngnewsapp'`, () => {
+  it(`should have as title 'Ng news app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ngnewsapp');
+    expect(app.title).toEqual('Ng news app');
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should render login name Imaistrenka', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ngnewsapp!');
+    expect(compiled.querySelector('span').textContent).toContain('Imaistrenka');
   });
 });
