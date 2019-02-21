@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col col-lg-3">
-        <select class="form-control" (ngModelChange)="filterBySource($event)" [(ngModel)]="searchModel.source" [disabled]="check1.checked">
+        <select id="source" class="form-control" (ngModelChange)="filterBySource($event)" [(ngModel)]="searchModel.source" [disabled]="searchModel.createdByMe">
           <option value="">Select source</option>
           <option value="BBC">BBC</option>
           <option value="test">Test</option>

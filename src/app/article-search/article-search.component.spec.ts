@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ArticleSearchComponent } from './article-search.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Search } from '../search';
+import { NewsFeedComponent } from '../news-feed/news-feed.component';
 
 describe('ArticleSearchComponent', () => {
   beforeEach(async(() => {
@@ -11,7 +13,7 @@ describe('ArticleSearchComponent', () => {
         RouterTestingModule, FormsModule, HttpClientTestingModule
       ],
       declarations: [
-        ArticleSearchComponent
+        ArticleSearchComponent, NewsFeedComponent
       ],
     }).compileComponents();
   }));

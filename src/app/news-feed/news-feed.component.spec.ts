@@ -20,4 +20,19 @@ describe('NewsFeedComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
+
+  it('should render Show more button', () => {
+    const fixture = TestBed.createComponent(NewsFeedComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#showMore').textContent).toContain('Show more');
+  });
+
+  it('should render disabled Show more button', () => {
+    const fixture = TestBed.createComponent(NewsFeedComponent);
+    fixture.componentInstance.showMoreDisabled = true;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#showMore').disabled).toEqual(true);
+  });
 });
